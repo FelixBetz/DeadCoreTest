@@ -10,7 +10,7 @@ sudo usermod -aG docker "$USER"
 # --- Home Assistant starten ---
 echo ">>> Home Assistant starten..."
 cd "$(dirname "$0")"
-docker compose up -d
+sudo docker compose up -d
 
 echo ""
 echo ">>> Fertig! Home Assistant erreichbar unter http://$(hostname -I | awk '{print $1}'):8123"
