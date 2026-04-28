@@ -15,6 +15,7 @@ echo ""
 
 PASSWD_FILE="$(dirname "$0")/mosquitto/config/passwd"
 sudo mkdir -p "$(dirname "$PASSWD_FILE")"
+sudo rm -f "$PASSWD_FILE"
 sudo docker run --rm -v "$(dirname "$0")/mosquitto/config:/mosquitto/config" eclipse-mosquitto:2 mosquitto_passwd -b -c /mosquitto/config/passwd "$MQTT_USER" "$MQTT_PASS"
 echo ">>> Passwortdatei erstellt."
 
