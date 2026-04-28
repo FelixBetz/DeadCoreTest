@@ -14,9 +14,10 @@ read -rsp "MQTT Passwort: " MQTT_PASS
 echo ""
 
 PASSWD_FILE="$(dirname "$0")/mosquitto/config/passwd"
-sudo mkdir -p "$(dirname "$PASSWD_FILE")"
+sudo mkdir -p "$(dirname "$PASSWD_FILE")" "$(dirname "$0")/mosquitto/data" "$(dirname "$0")/mosquitto/log"
 sudo rm -f "$PASSWD_FILE"
 sudo docker run --rm -v "$(dirname "$0")/mosquitto/config:/mosquitto/config" eclipse-mosquitto:2 mosquitto_passwd -b -c /mosquitto/config/passwd "$MQTT_USER" "$MQTT_PASS"
+sudo chown -R 1883:1883 "$(dirname "$0")/mosquitto"
 echo ">>> Passwortdatei erstellt."
 
 # --- Home Assistant und Mosquitto starten ---
